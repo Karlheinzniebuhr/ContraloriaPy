@@ -9,26 +9,12 @@ Para correr el primer bloque es necesario instalar pacman. En RStudio puedes hac
 pacman::p_load(pdftools, tidyverse, tesseract)
 ```
 
-Si no tienes instalado el modelo en español de tesseract, quita el comentario de y corré al siguiente bloque
-
-```{r}
-# tesseract_download('spa', datapath = NULL, progress = interactive())
-```
 Obtenemos todos los nombres de los PDFs
 
 ```{r}
 pdf_files <- Sys.glob("contraloria_pdfs/*.pdf")
 head(pdf_files)
 ```
-
-```{r}
-pdf_text(pdf_files[1])[1] == ""
-```
-
-```{r}
-pdf_text("contraloria_pdfs/3068-434900-miguel-carrizosagaliano-2009-1.pdf")[1] == ""
-```
-
 Separamos los PDFs en digital/scanned 
 
 ```{r}
@@ -62,6 +48,12 @@ for (pdf in pdf_files)
 ```
 
 Prueba de OCR
+
+Si no tienes instalado el modelo en español de tesseract, quita el comentario de y corré al siguiente bloque
+
+```{r}
+# tesseract_download('spa', datapath = NULL, progress = interactive())
+```
 
 ```{r}
 es <- tesseract::tesseract("spa")
